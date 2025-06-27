@@ -162,9 +162,17 @@ export default function Index() {
     getCurrentLocation();
   };
 
-  // If we have weather data, show the full WeatherDisplay component
+  // If we have weather data, show the full WeatherInterface component
   if (weather && !loading) {
-    return <WeatherDisplay weather={weather} forecast={forecast} />;
+    return (
+      <WeatherInterface
+        weather={weather}
+        forecast={forecast}
+        onSearch={handleSearch}
+        onCurrentLocation={handleCurrentLocation}
+        loading={loading}
+      />
+    );
   }
 
   // Otherwise, show the search interface with dark background
