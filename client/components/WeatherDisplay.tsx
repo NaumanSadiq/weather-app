@@ -164,86 +164,82 @@ export default function WeatherDisplay({
 
             <div className="grid grid-cols-12 gap-8">
               {/* Left Column - Current Weather & Daily Forecast */}
-              <div className="col-span-5 space-y-8">
+              <div className="col-span-5 space-y-6">
                 {/* Current Weather */}
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-6">
                   <div className="flex-shrink-0 weather-icon">
                     {getWeatherIcon(weather.current.condition.text, "lg")}
                   </div>
                   <div>
-                    <div className="text-5xl font-thin text-white mb-1 temperature-display">
+                    <div className="text-6xl font-thin text-white mb-1 temperature-display">
                       {Math.round(weather.current.temp_c)}°
                     </div>
-                    <div className="text-sm text-white/80">
+                    <div className="text-sm text-white/70">
                       Feels like {Math.round(weather.current.feelslike_c)}°
                     </div>
                   </div>
                 </div>
 
                 {/* 7-Day Forecast */}
-                <div>
+                <div className="mt-8">
                   <div className="flex items-center space-x-2 mb-4">
-                    <div className="w-3 h-3 bg-white/60 rounded-sm flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-sm"></div>
+                    <div className="w-3 h-3 bg-white/40 rounded-sm flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
                     </div>
-                    <h3 className="text-xs font-medium text-white/70 uppercase tracking-wide">
+                    <h3 className="text-xs font-medium text-white/60 uppercase tracking-wide">
                       10-Day Forecast
                     </h3>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     {[
-                      "Today",
-                      "SUN",
-                      "MON",
-                      "TUE",
-                      "WED",
-                      "THU",
-                      "FRI",
-                      "SAT",
-                      "SUN",
-                    ].map((day, index) => {
-                      const isToday = index === 0;
-                      const minTemp = Math.round(15 + Math.random() * 10);
-                      const maxTemp = Math.round(25 + Math.random() * 10);
-                      const chanceOfRain = Math.round(10 + Math.random() * 40);
-
-                      return (
-                        <div
-                          key={day}
-                          className="flex items-center justify-between py-1.5 forecast-item"
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          <div className="flex items-center space-x-3 flex-1">
-                            <div className="text-xs font-medium text-white w-8">
-                              {day}
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              {getWeatherIcon("thunderstorm", "sm")}
-                              <span className="text-xs text-white/60 w-6">
-                                {chanceOfRain}%
-                              </span>
-                            </div>
+                      { day: "Today", min: 15, max: 25, rain: 15 },
+                      { day: "SUN", min: 12, max: 20, rain: 12 },
+                      { day: "MON", min: 14, max: 22, rain: 14 },
+                      { day: "TUE", min: 13, max: 21, rain: 13 },
+                      { day: "WED", min: 17, max: 26, rain: 17 },
+                      { day: "THU", min: 13, max: 19, rain: 13 },
+                      { day: "FRI", min: 13, max: 21, rain: 13 },
+                      { day: "SAT", min: 13, max: 21, rain: 13 },
+                      { day: "SUN", min: 13, max: 21, rain: 13 },
+                    ].map((item, index) => (
+                      <div
+                        key={item.day}
+                        className="flex items-center justify-between py-1 forecast-item"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <div className="flex items-center space-x-3 flex-1">
+                          <div className="text-xs font-medium text-white w-12">
+                            {item.day}
                           </div>
-
-                          {/* Temperature Range Bar */}
-                          <div className="flex items-center space-x-2 flex-1 justify-end">
-                            <span className="text-xs text-white/60 w-6 text-right">
-                              {minTemp}°
-                            </span>
-                            <div className="w-12 h-0.5 bg-white/20 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-gradient-to-r from-purple-400 to-orange-400 rounded-full"
-                                style={{ width: "75%" }}
-                              ></div>
-                            </div>
-                            <span className="text-xs text-white w-6">
-                              {maxTemp}°
+                          <div className="flex items-center space-x-2">
+                            {getWeatherIcon(
+                              weather.current.condition.text,
+                              "sm",
+                            )}
+                            <span className="text-xs text-white/60 w-6">
+                              {item.rain}%
                             </span>
                           </div>
                         </div>
-                      );
-                    })}
+
+                        {/* Temperature Range Bar */}
+                        <div className="flex items-center space-x-2 flex-1 justify-end">
+                          <span className="text-xs text-white/60 w-6 text-right">
+                            {item.min}°
+                          </span>
+                          <div className="w-16 h-1 bg-white/20 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 rounded-full"
+                              style={{ width: "70%" }}
+                            ></div>
+                          </div>
+                          <span className="text-xs text-white w-6">
+                            {item.max}°
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -252,66 +248,62 @@ export default function WeatherDisplay({
               <div className="col-span-7 space-y-8">
                 {/* Weather Forecast Header */}
                 <div className="text-right">
-                  <h2 className="text-xs font-medium text-white/70 mb-1 uppercase tracking-wide">
+                  <h2 className="text-xs font-medium text-white/60 mb-2 uppercase tracking-wide">
                     Weather Forecast
                   </h2>
-                  <h1 className="text-3xl font-light text-white capitalize">
+                  <h1 className="text-4xl font-light text-white capitalize">
                     {weather.current.condition.text}
                   </h1>
                 </div>
 
                 {/* Hourly Forecast */}
-                <div>
-                  <div className="grid grid-cols-9 gap-2">
-                    {hourlyTimes.map((time, index) => {
-                      const temp = Math.round(
-                        weather.current.temp_c + (Math.random() - 0.5) * 8,
-                      );
-
-                      return (
-                        <div key={time} className="text-center space-y-2">
-                          <div className="text-xs text-white/60">{time}</div>
-                          <div className="flex justify-center">
-                            {getWeatherIcon("thunderstorm", "sm")}
-                          </div>
-                          <div className="text-xs font-medium text-white">
-                            {temp}°
-                          </div>
+                <div className="mt-12">
+                  <div className="grid grid-cols-9 gap-3">
+                    {[
+                      {
+                        time: "18:00",
+                        temp: 20,
+                        icon: weather.current.condition.text,
+                      },
+                      {
+                        time: "19:00",
+                        temp: 19,
+                        icon: weather.current.condition.text,
+                      },
+                      {
+                        time: "20:00",
+                        temp: 19,
+                        icon: weather.current.condition.text,
+                      },
+                      {
+                        time: "21:00",
+                        temp: 18,
+                        icon: weather.current.condition.text,
+                      },
+                      {
+                        time: "22:00",
+                        temp: 17,
+                        icon: weather.current.condition.text,
+                      },
+                      {
+                        time: "23:00",
+                        temp: 16,
+                        icon: weather.current.condition.text,
+                      },
+                      { time: "00:00", temp: 16, icon: "cloudy" },
+                      { time: "01:00", temp: 15, icon: "cloudy" },
+                      { time: "02:00", temp: 15, icon: "cloudy" },
+                    ].map((hour) => (
+                      <div key={hour.time} className="text-center space-y-3">
+                        <div className="text-xs text-white/60">{hour.time}</div>
+                        <div className="flex justify-center">
+                          {getWeatherIcon(hour.icon, "sm")}
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Weather Details - Compact */}
-                <div className="grid grid-cols-4 gap-4 text-xs">
-                  <div className="text-center">
-                    <Wind className="w-3 h-3 mx-auto mb-1 text-white/60" />
-                    <div className="text-white/60">Wind</div>
-                    <div className="text-white font-medium">
-                      {weather.current.wind_kph} km/h
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Droplets className="w-3 h-3 mx-auto mb-1 text-white/60" />
-                    <div className="text-white/60">Humidity</div>
-                    <div className="text-white font-medium">
-                      {weather.current.humidity}%
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Eye className="w-3 h-3 mx-auto mb-1 text-white/60" />
-                    <div className="text-white/60">Visibility</div>
-                    <div className="text-white font-medium">
-                      {weather.current.vis_km} km
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Thermometer className="w-3 h-3 mx-auto mb-1 text-white/60" />
-                    <div className="text-white/60">Pressure</div>
-                    <div className="text-white font-medium">
-                      {weather.current.pressure_mb} mb
-                    </div>
+                        <div className="text-xs font-medium text-white">
+                          {hour.temp}°
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
