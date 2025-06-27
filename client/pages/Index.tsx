@@ -552,12 +552,7 @@ export default function Index() {
 
             {/* Weather Content */}
             {weather && !loading && (
-              <div className="space-y-6">
-                <WeatherCard weather={weather} />
-                {forecast && (
-                  <ForecastCard forecast={forecast.forecast.forecastday} />
-                )}
-              </div>
+              <WeatherDisplay weather={weather} forecast={forecast} />
             )}
 
             {/* Initial State */}
