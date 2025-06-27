@@ -150,16 +150,12 @@ export default function WeatherDisplay({
           <div className="bg-purple-900/30 backdrop-blur-xl border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl">
             {/* Header with Location */}
             <div className="flex items-center mb-6 sm:mb-8">
-              <button
-                onClick={() => setSelectedLocation(!selectedLocation)}
-                className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors"
-              >
+              <div className="flex items-center space-x-2 text-white/90">
                 <MapPin className="w-4 h-4" />
                 <span className="text-sm font-medium">
                   {weather.location.name}, {weather.location.country}
                 </span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
