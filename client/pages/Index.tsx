@@ -263,7 +263,7 @@ export default function Index() {
 
         {/* Footer */}
         <footer className="relative z-10 py-6 text-center text-white/60">
-          <p>Powered by WeatherAPI.com</p>
+          <p>Powered by Nauman Sadiq</p>
         </footer>
       </div>
     </div>
