@@ -129,3 +129,15 @@ export interface ForecastResponse {
     forecastday: ForecastDay[];
   };
 }
+
+export interface SearchLocation {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+}
+
+export type SearchResponse = SearchLocation[];
