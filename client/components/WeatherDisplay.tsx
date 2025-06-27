@@ -90,30 +90,52 @@ export default function WeatherDisplay({
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br ${theme.background} relative overflow-hidden`}
+      className={`min-h-screen bg-gradient-to-br ${theme.background} relative overflow-hidden weather-card`}
     >
-      {/* Dynamic Background Effects based on weather */}
+      {/* Enhanced Lightning Effects for Thunderstorm */}
       {theme.effects.lightning && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-1/4 w-1 h-32 bg-gradient-to-b from-white/90 via-purple-200/70 to-transparent lightning-flash opacity-0"></div>
-          <div
-            className="absolute top-16 left-1/3 w-0.5 h-28 bg-gradient-to-b from-white/80 via-yellow-200/60 to-transparent lightning-flash opacity-0"
-            style={{ animationDelay: "3s" }}
-          ></div>
+          {/* Main Lightning Bolts */}
+          <svg className="absolute top-0 right-0 w-full h-full opacity-80">
+            <path
+              d="M 80 10 L 120 80 L 100 80 L 140 150 L 90 90 L 110 90 L 70 20 Z"
+              fill="url(#lightning-gradient)"
+              className="lightning-flash"
+            />
+            <path
+              d="M 60 30 L 90 100 L 75 100 L 110 170 L 70 110 L 85 110 L 55 40 Z"
+              fill="url(#lightning-gradient)"
+              className="lightning-flash"
+              style={{ animationDelay: "2s" }}
+            />
+            <defs>
+              <linearGradient
+                id="lightning-gradient"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.6" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
       )}
 
       {/* Rain Effects */}
       {theme.effects.rain && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {Array.from({ length: 15 }, (_, i) => (
+          {Array.from({ length: 20 }, (_, i) => (
             <div
               key={i}
-              className={`absolute top-0 w-0.5 bg-gradient-to-b from-white/40 via-blue-200/60 to-transparent rain-drop opacity-70`}
+              className="absolute top-0 w-0.5 bg-gradient-to-b from-white/50 via-purple-200/40 to-transparent rain-drop opacity-60"
               style={{
-                left: `${(i + 1) * 6}%`,
-                height: `${12 + Math.random() * 8}px`,
-                animationDuration: `${1.2 + Math.random() * 0.8}s`,
+                left: `${(i + 1) * 4.5}%`,
+                height: `${10 + Math.random() * 12}px`,
+                animationDuration: `${1.0 + Math.random() * 1.0}s`,
                 animationDelay: `${Math.random() * 2}s`,
               }}
             ></div>
@@ -121,156 +143,138 @@ export default function WeatherDisplay({
         </div>
       )}
 
-      {/* Sun Effects */}
-      {theme.effects.sun && (
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-radial from-yellow-200/30 via-orange-200/15 to-transparent rounded-full blur-3xl sun-glow opacity-80"></div>
-      )}
-
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen p-8">
-        <div className="max-w-7xl mx-auto">
+      {/* Main Content Container */}
+      <div className="relative z-10 min-h-screen p-6">
+        <div className="max-w-6xl mx-auto">
           {/* Main Weather Card */}
-          <div
-            className={`${theme.cardBg} backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl`}
-          >
+          <div className="bg-purple-900/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
             {/* Header with Location */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center mb-8">
               <button
                 onClick={() => setSelectedLocation(!selectedLocation)}
                 className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors"
               >
-                <MapPin className="w-5 h-5" />
-                <span className="text-lg">
+                <MapPin className="w-4 h-4" />
+                <span className="text-sm font-medium">
                   {weather.location.name}, {weather.location.country}
                 </span>
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className="w-3 h-3" />
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Left Side - Current Weather & Daily Forecast */}
-              <div className="space-y-8">
+            <div className="grid grid-cols-12 gap-8">
+              {/* Left Column - Current Weather & Daily Forecast */}
+              <div className="col-span-5 space-y-8">
                 {/* Current Weather */}
-                <div className="flex items-start space-x-6">
-                  <div className="flex-shrink-0">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 weather-icon">
                     {getWeatherIcon(weather.current.condition.text, "lg")}
                   </div>
                   <div>
-                    <div
-                      className={`text-6xl font-thin ${theme.primaryText} mb-1`}
-                    >
+                    <div className="text-5xl font-thin text-white mb-1 temperature-display">
                       {Math.round(weather.current.temp_c)}°
                     </div>
-                    <div className={`text-lg ${theme.secondaryText}`}>
+                    <div className="text-sm text-white/80">
                       Feels like {Math.round(weather.current.feelslike_c)}°
                     </div>
                   </div>
                 </div>
 
-                {/* 10-Day Forecast */}
+                {/* 7-Day Forecast */}
                 <div>
-                  <div className="flex items-center space-x-2 mb-6">
-                    <div className="w-4 h-4 bg-white/60 rounded-sm flex items-center justify-center">
-                      <div className="w-2 h-2 bg-purple-600 rounded-sm"></div>
+                  <div className="flex items-center space-x-2 mb-4">
+                    <div className="w-3 h-3 bg-white/60 rounded-sm flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-sm"></div>
                     </div>
-                    <h3
-                      className={`text-sm font-medium ${theme.secondaryText}`}
-                    >
+                    <h3 className="text-xs font-medium text-white/70 uppercase tracking-wide">
                       10-Day Forecast
                     </h3>
                   </div>
 
-                  <div className="space-y-3">
-                    {forecast?.forecast.forecastday
-                      .slice(0, 7)
-                      .map((day, index) => (
+                  <div className="space-y-2">
+                    {[
+                      "Today",
+                      "SUN",
+                      "MON",
+                      "TUE",
+                      "WED",
+                      "THU",
+                      "FRI",
+                      "SAT",
+                      "SUN",
+                    ].map((day, index) => {
+                      const isToday = index === 0;
+                      const minTemp = Math.round(15 + Math.random() * 10);
+                      const maxTemp = Math.round(25 + Math.random() * 10);
+                      const chanceOfRain = Math.round(10 + Math.random() * 40);
+
+                      return (
                         <div
-                          key={day.date}
-                          className="flex items-center justify-between py-2"
+                          key={day}
+                          className="flex items-center justify-between py-1.5 forecast-item"
+                          style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                          <div className="flex items-center space-x-4 flex-1">
-                            <div
-                              className={`text-sm font-medium ${theme.primaryText} w-12`}
-                            >
-                              {getDayName(day.date)}
+                          <div className="flex items-center space-x-3 flex-1">
+                            <div className="text-xs font-medium text-white w-8">
+                              {day}
                             </div>
                             <div className="flex items-center space-x-2">
-                              {getWeatherIcon(day.day.condition.text, "sm")}
-                              <span
-                                className={`text-sm ${theme.secondaryText} w-4`}
-                              >
-                                {day.day.daily_chance_of_rain}%
+                              {getWeatherIcon("thunderstorm", "sm")}
+                              <span className="text-xs text-white/60 w-6">
+                                {chanceOfRain}%
                               </span>
                             </div>
                           </div>
 
                           {/* Temperature Range Bar */}
-                          <div className="flex items-center space-x-3 flex-1 justify-end">
-                            <span
-                              className={`text-sm ${theme.secondaryText} w-8 text-right`}
-                            >
-                              {Math.round(day.day.mintemp_c)}°
+                          <div className="flex items-center space-x-2 flex-1 justify-end">
+                            <span className="text-xs text-white/60 w-6 text-right">
+                              {minTemp}°
                             </span>
-                            <div className="w-16 h-1 bg-white/20 rounded-full overflow-hidden">
+                            <div className="w-12 h-0.5 bg-white/20 rounded-full overflow-hidden">
                               <div
-                                className="h-full bg-gradient-to-r from-blue-400 to-red-400 rounded-full"
-                                style={{ width: "70%" }}
+                                className="h-full bg-gradient-to-r from-purple-400 to-orange-400 rounded-full"
+                                style={{ width: "75%" }}
                               ></div>
                             </div>
-                            <span
-                              className={`text-sm ${theme.primaryText} w-8`}
-                            >
-                              {Math.round(day.day.maxtemp_c)}°
+                            <span className="text-xs text-white w-6">
+                              {maxTemp}°
                             </span>
                           </div>
                         </div>
-                      ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
 
-              {/* Right Side - Weather Forecast & Hourly */}
-              <div className="space-y-8">
+              {/* Right Column - Weather Forecast & Hourly */}
+              <div className="col-span-7 space-y-8">
                 {/* Weather Forecast Header */}
-                <div>
-                  <h2
-                    className={`text-sm font-medium ${theme.secondaryText} mb-2`}
-                  >
+                <div className="text-right">
+                  <h2 className="text-xs font-medium text-white/70 mb-1 uppercase tracking-wide">
                     Weather Forecast
                   </h2>
-                  <h1
-                    className={`text-4xl font-light ${theme.primaryText} capitalize`}
-                  >
+                  <h1 className="text-3xl font-light text-white capitalize">
                     {weather.current.condition.text}
                   </h1>
                 </div>
 
                 {/* Hourly Forecast */}
                 <div>
-                  <div className="grid grid-cols-9 gap-3">
+                  <div className="grid grid-cols-9 gap-2">
                     {hourlyTimes.map((time, index) => {
-                      // Simulate hourly data (in real app, this would come from API)
                       const temp = Math.round(
-                        weather.current.temp_c + (Math.random() - 0.5) * 6,
+                        weather.current.temp_c + (Math.random() - 0.5) * 8,
                       );
-                      const condition =
-                        index < 3
-                          ? weather.current.condition.text
-                          : index < 6
-                            ? "Partly cloudy"
-                            : "Clear";
 
                       return (
-                        <div key={time} className="text-center space-y-3">
-                          <div className={`text-xs ${theme.secondaryText}`}>
-                            {time}
-                          </div>
+                        <div key={time} className="text-center space-y-2">
+                          <div className="text-xs text-white/60">{time}</div>
                           <div className="flex justify-center">
-                            {getWeatherIcon(condition, "sm")}
+                            {getWeatherIcon("thunderstorm", "sm")}
                           </div>
-                          <div
-                            className={`text-sm font-medium ${theme.primaryText}`}
-                          >
+                          <div className="text-xs font-medium text-white">
                             {temp}°
                           </div>
                         </div>
@@ -279,67 +283,34 @@ export default function WeatherDisplay({
                   </div>
                 </div>
 
-                {/* Weather Details */}
-                <div className="grid grid-cols-2 gap-6 pt-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Wind className={`w-4 h-4 ${theme.accentColor}`} />
-                        <span className={`text-sm ${theme.secondaryText}`}>
-                          Wind
-                        </span>
-                      </div>
-                      <span
-                        className={`text-sm font-medium ${theme.primaryText}`}
-                      >
-                        {weather.current.wind_kph} km/h
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Droplets className={`w-4 h-4 ${theme.accentColor}`} />
-                        <span className={`text-sm ${theme.secondaryText}`}>
-                          Humidity
-                        </span>
-                      </div>
-                      <span
-                        className={`text-sm font-medium ${theme.primaryText}`}
-                      >
-                        {weather.current.humidity}%
-                      </span>
+                {/* Weather Details - Compact */}
+                <div className="grid grid-cols-4 gap-4 text-xs">
+                  <div className="text-center">
+                    <Wind className="w-3 h-3 mx-auto mb-1 text-white/60" />
+                    <div className="text-white/60">Wind</div>
+                    <div className="text-white font-medium">
+                      {weather.current.wind_kph} km/h
                     </div>
                   </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Eye className={`w-4 h-4 ${theme.accentColor}`} />
-                        <span className={`text-sm ${theme.secondaryText}`}>
-                          Visibility
-                        </span>
-                      </div>
-                      <span
-                        className={`text-sm font-medium ${theme.primaryText}`}
-                      >
-                        {weather.current.vis_km} km
-                      </span>
+                  <div className="text-center">
+                    <Droplets className="w-3 h-3 mx-auto mb-1 text-white/60" />
+                    <div className="text-white/60">Humidity</div>
+                    <div className="text-white font-medium">
+                      {weather.current.humidity}%
                     </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Thermometer
-                          className={`w-4 h-4 ${theme.accentColor}`}
-                        />
-                        <span className={`text-sm ${theme.secondaryText}`}>
-                          Pressure
-                        </span>
-                      </div>
-                      <span
-                        className={`text-sm font-medium ${theme.primaryText}`}
-                      >
-                        {weather.current.pressure_mb} mb
-                      </span>
+                  </div>
+                  <div className="text-center">
+                    <Eye className="w-3 h-3 mx-auto mb-1 text-white/60" />
+                    <div className="text-white/60">Visibility</div>
+                    <div className="text-white font-medium">
+                      {weather.current.vis_km} km
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <Thermometer className="w-3 h-3 mx-auto mb-1 text-white/60" />
+                    <div className="text-white/60">Pressure</div>
+                    <div className="text-white font-medium">
+                      {weather.current.pressure_mb} mb
                     </div>
                   </div>
                 </div>
