@@ -245,20 +245,20 @@ export default function WeatherDisplay({
               </div>
 
               {/* Right Column - Weather Forecast & Hourly */}
-              <div className="col-span-7 space-y-8">
+              <div className="lg:col-span-7 space-y-6 sm:space-y-8">
                 {/* Weather Forecast Header */}
-                <div className="text-right">
+                <div className="text-center lg:text-right">
                   <h2 className="text-xs font-medium text-white/60 mb-2 uppercase tracking-wide">
                     Weather Forecast
                   </h2>
-                  <h1 className="text-4xl font-light text-white capitalize">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white capitalize">
                     {weather.current.condition.text}
                   </h1>
                 </div>
 
                 {/* Hourly Forecast */}
-                <div className="mt-12">
-                  <div className="grid grid-cols-9 gap-3">
+                <div className="mt-6 sm:mt-8 lg:mt-12">
+                  <div className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-9 gap-2 sm:gap-3">
                     {[
                       {
                         time: "18:00",
@@ -293,17 +293,31 @@ export default function WeatherDisplay({
                       { time: "00:00", temp: 16, icon: "cloudy" },
                       { time: "01:00", temp: 15, icon: "cloudy" },
                       { time: "02:00", temp: 15, icon: "cloudy" },
-                    ].map((hour) => (
-                      <div key={hour.time} className="text-center space-y-3">
-                        <div className="text-xs text-white/60">{hour.time}</div>
-                        <div className="flex justify-center">
-                          {getWeatherIcon(hour.icon, "sm")}
+                    ]
+                      .slice(
+                        0,
+                        window.innerWidth < 640
+                          ? 5
+                          : window.innerWidth < 1024
+                            ? 7
+                            : 9,
+                      )
+                      .map((hour) => (
+                        <div
+                          key={hour.time}
+                          className="text-center space-y-2 sm:space-y-3"
+                        >
+                          <div className="text-xs text-white/60">
+                            {hour.time}
+                          </div>
+                          <div className="flex justify-center">
+                            {getWeatherIcon(hour.icon, "sm")}
+                          </div>
+                          <div className="text-xs font-medium text-white">
+                            {hour.temp}°
+                          </div>
                         </div>
-                        <div className="text-xs font-medium text-white">
-                          {hour.temp}°
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
