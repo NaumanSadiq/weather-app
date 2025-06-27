@@ -165,10 +165,16 @@ export default function Index() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Dynamic Multi-layer Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-800 to-blue-900"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-transparent to-purple-600/20"></div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-blue-500/10 to-teal-600/30"></div>
+      {/* Dark Aesthetic Sky Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-slate-800 via-gray-900 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/40 via-transparent to-slate-700/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-gray-800/20 to-blue-900/40"></div>
+
+      {/* Storm Clouds Layer */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-2/3 bg-gradient-to-b from-gray-800/60 via-slate-700/40 to-transparent storm-clouds"></div>
+        <div className="absolute top-16 left-0 w-full h-1/2 bg-gradient-to-b from-gray-700/50 via-slate-600/30 to-transparent storm-clouds-2"></div>
+      </div>
 
       {/* Animated Gradient Orbs */}
       <div className="absolute inset-0 overflow-hidden">
