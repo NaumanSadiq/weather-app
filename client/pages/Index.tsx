@@ -123,8 +123,36 @@ export default function Index() {
   };
 
   useEffect(() => {
-    // Try to get current location on mount
-    getCurrentLocation();
+    // Try to get current location on mount with better error handling
+    const initializeLocation = () => {
+      if ("geolocation" in navigator) {
+        setLoading(true);
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            fetchWeather(`${latitude},${longitude}`);
+          },
+          (error) => {
+            console.error("Initial geolocation error:", {
+              code: error.code,
+              message: error.message,
+            });
+            setLoading(false);
+            setShowFallback(true);
+            // Don't set error on initial load, just show fallback
+          },
+          {
+            timeout: 10000,
+            enableHighAccuracy: false,
+            maximumAge: 600000, // 10 minutes
+          },
+        );
+      } else {
+        setShowFallback(true);
+      }
+    };
+
+    initializeLocation();
   }, []);
 
   const handleSearch = (query: string) => {
