@@ -242,22 +242,35 @@ export default function WeatherDisplay({
                       };
                     }).map((item, index) => (
                       <div
-                        key={item.day}
-                        className="flex items-center justify-between py-1.5 sm:py-1 forecast-item"
-                        style={{ animationDelay: `${index * 0.1}s` }}
+                        key={`${item.day}-${index}`}
+                        className="flex items-center justify-between py-1.5 sm:py-1 forecast-item hover:bg-white/5 rounded-lg px-2 transition-colors"
+                        style={{ animationDelay: `${index * 0.02}s` }}
                       >
                         <div className="flex items-center space-x-2 sm:space-x-3 flex-1">
-                          <div className="text-xs font-medium text-white w-10 sm:w-12">
-                            {item.day}
+                          <div className="min-w-0 flex-shrink-0">
+                            <div className="text-xs font-medium text-white">
+                              {item.day}
+                            </div>
+                            <div className="text-xs text-white/50">
+                              {item.date}
+                            </div>
                           </div>
                           <div className="flex items-center space-x-1 sm:space-x-2">
                             {getWeatherIcon(
                               weather.current.condition.text,
                               "sm",
                             )}
-                            <span className="text-xs text-white/60 w-6 hidden sm:inline">
-                              {item.rain}%
-                            </span>
+                            <div className="flex flex-col items-center space-y-0.5">
+                              <span className="text-xs text-white/60 w-6 hidden sm:inline">
+                                {item.rain}%
+                              </span>
+                              <div className="flex items-center space-x-1">
+                                <Droplets className="w-2 h-2 text-white/40" />
+                                <span className="text-xs text-white/50">
+                                  {item.humidity}%
+                                </span>
+                              </div>
+                            </div>
                           </div>
                         </div>
 
@@ -266,10 +279,12 @@ export default function WeatherDisplay({
                           <span className="text-xs text-white/60 w-5 sm:w-6 text-right">
                             {item.min}°
                           </span>
-                          <div className="w-12 sm:w-16 h-1 bg-white/20 rounded-full overflow-hidden">
+                          <div className="w-10 sm:w-14 h-1 bg-white/20 rounded-full overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 rounded-full"
-                              style={{ width: "70%" }}
+                              style={{
+                                width: `${Math.min(90, Math.max(30, ((item.max - item.min) / 20) * 100))}%`,
+                              }}
                             ></div>
                           </div>
                           <span className="text-xs text-white w-5 sm:w-6">
