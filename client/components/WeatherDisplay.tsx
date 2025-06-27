@@ -144,12 +144,12 @@ export default function WeatherDisplay({
       )}
 
       {/* Main Content Container */}
-      <div className="relative z-10 min-h-screen p-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10 min-h-screen p-4 sm:p-6 lg:p-8">
+        <div className="max-w-7xl mx-auto">
           {/* Main Weather Card */}
-          <div className="bg-purple-900/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+          <div className="bg-purple-900/30 backdrop-blur-xl border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl">
             {/* Header with Location */}
-            <div className="flex items-center mb-8">
+            <div className="flex items-center mb-6 sm:mb-8">
               <button
                 onClick={() => setSelectedLocation(!selectedLocation)}
                 className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors"
@@ -162,7 +162,7 @@ export default function WeatherDisplay({
               </button>
             </div>
 
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
               {/* Left Column - Current Weather & Daily Forecast */}
               <div className="col-span-5 space-y-6">
                 {/* Current Weather */}
