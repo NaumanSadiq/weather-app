@@ -382,3 +382,104 @@
 .mist-effect {
   animation: mist-effect 15s ease-in-out infinite;
 }
+
+/* Lightning Bolt Shape */
+.lightning-bolt {
+  clip-path: polygon(30% 0%, 60% 35%, 100% 35%, 40% 100%, 70% 60%, 0% 60%);
+  background: linear-gradient(45deg, #fbbf24, #f59e0b, #ffffff);
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8));
+  animation: lightning-bolt-flash 2s ease-in-out infinite;
+}
+
+@keyframes lightning-bolt-flash {
+  0%,
+  90%,
+  100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8));
+  }
+  5%,
+  15%,
+  25% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 1))
+      drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }
+  10%,
+  20% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+  }
+}
+
+/* Additional Weather Display Animations */
+@keyframes temperature-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes weather-icon-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+
+@keyframes forecast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Apply weather display animations */
+.temperature-display {
+  animation: temperature-glow 4s ease-in-out infinite;
+}
+
+.weather-icon {
+  animation: weather-icon-float 3s ease-in-out infinite;
+}
+
+.forecast-item {
+  animation: forecast-slide-in 0.6s ease-out;
+}
+
+.weather-card {
+  animation: card-fade-in 0.8s ease-out;
+}
+
+/* Enhanced lightning flash for weather display */
+.lightning-flash {
+  animation: lightning-flash 8s ease-in-out infinite;
+}
+
+/* Gradient radial utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
