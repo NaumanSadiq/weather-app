@@ -173,6 +173,20 @@ export default function WeatherDisplay({
                     <div className="text-xs sm:text-sm text-white/70">
                       Feels like {Math.round(weather.current.feelslike_c)}°
                     </div>
+                    <div className="flex items-center space-x-4 mt-2">
+                      <div className="flex items-center space-x-1">
+                        <Droplets className="w-3 h-3 text-white/60" />
+                        <span className="text-xs text-white/70">
+                          {weather.current.humidity}%
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Wind className="w-3 h-3 text-white/60" />
+                        <span className="text-xs text-white/70">
+                          {weather.current.wind_kph} km/h
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
