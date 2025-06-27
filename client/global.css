@@ -188,3 +188,197 @@
 .lightning {
   animation: lightning 5s ease-in-out infinite;
 }
+
+/* Dark Aesthetic Animations */
+@keyframes storm-clouds {
+  0%,
+  100% {
+    transform: translateX(-50px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(30px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes storm-clouds-2 {
+  0%,
+  100% {
+    transform: translateX(40px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(-20px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+@keyframes cloud-drift-reverse {
+  0% {
+    transform: translateX(calc(100vw + 100px));
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes cloud-fast {
+  0% {
+    transform: translateX(-60px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 60px));
+  }
+}
+
+@keyframes cloud-fast-reverse {
+  0% {
+    transform: translateX(calc(100vw + 60px));
+  }
+  100% {
+    transform: translateX(-60px);
+  }
+}
+
+@keyframes rain-drop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes water-splash {
+  0%,
+  80% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  90% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-flash {
+  0%,
+  95%,
+  100% {
+    opacity: 0;
+  }
+  1%,
+  3%,
+  5% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  2%,
+  4% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes sun-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes sun-ray {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes mist-effect {
+  0%,
+  100% {
+    transform: translateX(-10px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(10px);
+    opacity: 0.8;
+  }
+}
+
+/* Apply animations */
+.storm-clouds {
+  animation: storm-clouds 20s ease-in-out infinite;
+}
+
+.storm-clouds-2 {
+  animation: storm-clouds-2 25s ease-in-out infinite;
+}
+
+.cloud-drift {
+  animation: cloud-drift 60s linear infinite;
+}
+
+.cloud-drift-reverse {
+  animation: cloud-drift-reverse 80s linear infinite;
+}
+
+.cloud-fast {
+  animation: cloud-fast 30s linear infinite;
+}
+
+.cloud-fast-reverse {
+  animation: cloud-fast-reverse 40s linear infinite;
+}
+
+.rain-drop {
+  animation: rain-drop linear infinite;
+}
+
+.water-splash {
+  animation: water-splash linear infinite;
+}
+
+.lightning-flash {
+  animation: lightning-flash 8s ease-in-out infinite;
+}
+
+.sun-glow {
+  animation: sun-glow 6s ease-in-out infinite;
+}
+
+.sun-ray {
+  animation: sun-ray 4s ease-in-out infinite;
+}
+
+.mist-effect {
+  animation: mist-effect 15s ease-in-out infinite;
+}
