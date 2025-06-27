@@ -130,14 +130,14 @@ export default function SearchBar({
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto mb-8 relative">
+    <div className="w-full max-w-md mx-auto mb-6 sm:mb-8 relative">
       <form
         onSubmit={handleSubmit}
         className="relative flex items-center gap-2"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 w-5 h-5 z-10" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 w-4 h-4 sm:w-5 sm:h-5 z-10" />
           <input
             ref={inputRef}
             type="text"
@@ -148,50 +148,50 @@ export default function SearchBar({
               if (suggestions.length > 0) setShowSuggestions(true);
             }}
             placeholder="Search for a city..."
-            className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-lg pl-10 pr-10 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/50 transition-all duration-200"
+            className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-lg pl-8 sm:pl-10 pr-8 sm:pr-10 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/50 transition-all duration-200"
             disabled={loading}
             autoComplete="off"
           />
           {searching && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white/60 rounded-full animate-spin"></div>
+              <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white/60 rounded-full animate-spin"></div>
             </div>
           )}
           {showSuggestions && suggestions.length > 0 && (
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/60 w-4 h-4" />
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/60 w-3 h-3 sm:w-4 sm:h-4" />
           )}
         </div>
         <button
           type="submit"
           disabled={loading || !query.trim()}
-          className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-3 text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-2.5 sm:p-3 text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
-          <Search className="w-5 h-5" />
+          <Search className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           type="button"
           onClick={onCurrentLocation}
           disabled={loading}
-          className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-3 text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-2.5 sm:p-3 text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
-          <MapPin className="w-5 h-5" />
+          <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </form>
 
       {/* Suggestions Dropdown */}
       {showSuggestions && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-12 mt-2 bg-white/95 backdrop-blur-md border border-white/30 rounded-lg shadow-2xl overflow-hidden z-50">
+        <div className="absolute top-full left-0 right-12 sm:right-16 mt-2 bg-white/95 backdrop-blur-md border border-white/30 rounded-lg shadow-2xl overflow-hidden z-50 max-h-60 overflow-y-auto">
           {suggestions.map((location, index) => (
             <div
               key={`${location.lat}-${location.lon}`}
               onClick={() => selectLocation(location)}
-              className={`px-4 py-3 cursor-pointer transition-all duration-200 border-b border-gray-200/20 last:border-b-0 ${
+              className={`px-3 sm:px-4 py-2.5 sm:py-3 cursor-pointer transition-all duration-200 border-b border-gray-200/20 last:border-b-0 ${
                 index === selectedIndex
                   ? "bg-blue-500/20 text-blue-900"
                   : "text-gray-800 hover:bg-gray-100/50"
               }`}
             >
-              <div className="font-medium text-sm">
+              <div className="font-medium text-xs sm:text-sm">
                 {location.name}
                 {location.region && (
                   <span className="font-normal text-gray-600">
