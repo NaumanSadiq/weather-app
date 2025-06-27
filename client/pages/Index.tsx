@@ -76,17 +76,42 @@ export default function Index() {
           console.error("Geolocation error:", error);
           setLoading(false);
           setShowFallback(true);
-          setError("Unable to get your location. Please search manually.");
+
+          let errorMessage =
+            "Unable to get your location. Please search manually.";
+
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage =
+                "Location access was denied. Please enable location access in your browser settings or search manually.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage =
+                "Location information is unavailable. Please check your connection or search manually.";
+              break;
+            case error.TIMEOUT:
+              errorMessage =
+                "Location request timed out. Please try again or search manually.";
+              break;
+            default:
+              errorMessage = `Location error (${error.code}): ${error.message || "Unknown error"}. Please search manually.`;
+              break;
+          }
+
+          setError(errorMessage);
         },
         {
-          timeout: 10000,
-          enableHighAccuracy: true,
+          timeout: 15000,
+          enableHighAccuracy: false,
+          maximumAge: 300000, // 5 minutes
         },
       );
     } else {
       setLoading(false);
       setShowFallback(true);
-      setError("Geolocation is not supported by your browser.");
+      setError(
+        "Geolocation is not supported by your browser. Please search manually.",
+      );
     }
   };
 
