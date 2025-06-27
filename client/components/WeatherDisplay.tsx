@@ -190,29 +190,57 @@ export default function WeatherDisplay({
                   </div>
                 </div>
 
-                {/* 7-Day Forecast */}
+                {/* Monthly Forecast */}
                 <div className="mt-6 sm:mt-8">
                   <div className="flex items-center space-x-2 mb-3 sm:mb-4">
                     <div className="w-3 h-3 bg-white/40 rounded-sm flex items-center justify-center">
                       <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
                     </div>
                     <h3 className="text-xs font-medium text-white/60 uppercase tracking-wide">
-                      10-Day Forecast
+                      30-Day Monthly Forecast
                     </h3>
                   </div>
 
-                  <div className="space-y-2 sm:space-y-2.5">
-                    {[
-                      { day: "Today", min: 15, max: 25, rain: 15 },
-                      { day: "SUN", min: 12, max: 20, rain: 12 },
-                      { day: "MON", min: 14, max: 22, rain: 14 },
-                      { day: "TUE", min: 13, max: 21, rain: 13 },
-                      { day: "WED", min: 17, max: 26, rain: 17 },
-                      { day: "THU", min: 13, max: 19, rain: 13 },
-                      { day: "FRI", min: 13, max: 21, rain: 13 },
-                      { day: "SAT", min: 13, max: 21, rain: 13 },
-                      { day: "SUN", min: 13, max: 21, rain: 13 },
-                    ].map((item, index) => (
+                  <div className="space-y-2 sm:space-y-2.5 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                    {Array.from({ length: 30 }, (_, index) => {
+                      const date = new Date();
+                      date.setDate(date.getDate() + index);
+
+                      const dayName =
+                        index === 0
+                          ? "Today"
+                          : index === 1
+                            ? "Tomorrow"
+                            : date
+                                .toLocaleDateString("en-US", {
+                                  weekday: "short",
+                                })
+                                .toUpperCase();
+
+                      const dateString = date.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      });
+
+                      // Simulate realistic weather variations
+                      const baseTemp = weather.current.temp_c;
+                      const minTemp = Math.round(
+                        baseTemp - 5 + Math.random() * 8,
+                      );
+                      const maxTemp = Math.round(
+                        baseTemp + 3 + Math.random() * 8,
+                      );
+                      const rainChance = Math.round(10 + Math.random() * 40);
+
+                      return {
+                        day: dayName,
+                        date: dateString,
+                        min: minTemp,
+                        max: maxTemp,
+                        rain: rainChance,
+                        humidity: Math.round(40 + Math.random() * 40),
+                      };
+                    }).map((item, index) => (
                       <div
                         key={item.day}
                         className="flex items-center justify-between py-1.5 sm:py-1 forecast-item"
