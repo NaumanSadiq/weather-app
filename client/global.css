@@ -7,11 +7,34 @@
 /* TailwindV4 theme and design tokens */
 @theme {
   /* Fonts */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  /* Weather App Theme Colors */
+  --color-weather-primary: 63 89 237;
+  --color-weather-secondary: 123 97 255;
+  --color-weather-accent: 147 197 253;
+  --color-weather-dark: 30 41 59;
+  --color-weather-light: 248 250 252;
+  --color-weather-card: 255 255 255;
+  --color-weather-overlay: 0 0 0;
+
+  /* Weather gradients */
+  --gradient-weather-main: linear-gradient(
+    135deg,
+    rgb(63, 89, 237) 0%,
+    rgb(123, 97, 255) 100%
+  );
+  --gradient-weather-card: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
 
   /* Theme and design tokens
    * Example, adding more colors (for a figma design)
