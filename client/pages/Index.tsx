@@ -73,7 +73,14 @@ export default function Index() {
           fetchWeather(`${latitude},${longitude}`);
         },
         (error) => {
-          console.error("Geolocation error:", error);
+          console.error("Geolocation error details:", {
+            code: error.code,
+            message: error.message,
+            PERMISSION_DENIED: error.PERMISSION_DENIED,
+            POSITION_UNAVAILABLE: error.POSITION_UNAVAILABLE,
+            TIMEOUT: error.TIMEOUT,
+          });
+
           setLoading(false);
           setShowFallback(true);
 
@@ -81,20 +88,20 @@ export default function Index() {
             "Unable to get your location. Please search manually.";
 
           switch (error.code) {
-            case error.PERMISSION_DENIED:
+            case 1: // PERMISSION_DENIED
               errorMessage =
                 "Location access was denied. Please enable location access in your browser settings or search manually.";
               break;
-            case error.POSITION_UNAVAILABLE:
+            case 2: // POSITION_UNAVAILABLE
               errorMessage =
                 "Location information is unavailable. Please check your connection or search manually.";
               break;
-            case error.TIMEOUT:
+            case 3: // TIMEOUT
               errorMessage =
                 "Location request timed out. Please try again or search manually.";
               break;
             default:
-              errorMessage = `Location error (${error.code}): ${error.message || "Unknown error"}. Please search manually.`;
+              errorMessage = `Location error (Code ${error.code}): ${error.message || "Unknown error"}. Please search manually.`;
               break;
           }
 
