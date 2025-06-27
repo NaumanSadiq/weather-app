@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Search, MapPin } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Search, MapPin, ChevronDown } from "lucide-react";
+import axios from "axios";
+import { SearchLocation, SearchResponse } from "@shared/weather";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -13,13 +15,119 @@ export default function SearchBar({
   loading = false,
 }: SearchBarProps) {
   const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<SearchLocation[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [searching, setSearching] = useState(false);
+  const searchTimeoutRef = useRef<NodeJS.Timeout>();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Debounced search function
+  const searchLocations = async (searchQuery: string) => {
+    if (searchQuery.length < 2) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+
+    setSearching(true);
+    try {
+      const response = await axios.get(
+        "https://api.weatherapi.com/v1/search.json",
+        {
+          params: {
+            key: import.meta.env.VITE_WEATHER_API_KEY,
+            q: searchQuery,
+          },
+        },
+      );
+      const locations: SearchResponse = response.data;
+      setSuggestions(locations.slice(0, 5)); // Limit to 5 suggestions
+      setShowSuggestions(locations.length > 0);
+      setSelectedIndex(-1);
+    } catch (error) {
+      console.error("Search error:", error);
+      setSuggestions([]);
+      setShowSuggestions(false);
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  // Handle input change with debouncing
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    // Clear previous timeout
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+
+    // Set new timeout for debounced search
+    searchTimeoutRef.current = setTimeout(() => {
+      searchLocations(value);
+    }, 300);
+  };
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions || suggestions.length === 0) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : prev,
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (selectedIndex >= 0) {
+          selectLocation(suggestions[selectedIndex]);
+        } else if (query.trim()) {
+          handleSubmit(e);
+        }
+        break;
+      case "Escape":
+        setShowSuggestions(false);
+        setSelectedIndex(-1);
+        inputRef.current?.blur();
+        break;
+    }
+  };
+
+  // Select a location from suggestions
+  const selectLocation = (location: SearchLocation) => {
+    const locationString = `${location.name}, ${location.region}, ${location.country}`;
+    setQuery(locationString);
+    setShowSuggestions(false);
+    setSelectedIndex(-1);
+    onSearch(locationString);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
       onSearch(query.trim());
+      setShowSuggestions(false);
     }
   };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShowSuggestions(false);
+      setSelectedIndex(-1);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   return (
     <div className="w-full max-w-md mx-auto mb-8">
