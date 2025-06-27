@@ -164,25 +164,25 @@ export default function WeatherDisplay({
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
               {/* Left Column - Current Weather & Daily Forecast */}
-              <div className="col-span-5 space-y-6">
+              <div className="lg:col-span-5 space-y-4 sm:space-y-6">
                 {/* Current Weather */}
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-4 sm:space-x-6">
                   <div className="flex-shrink-0 weather-icon">
                     {getWeatherIcon(weather.current.condition.text, "lg")}
                   </div>
                   <div>
-                    <div className="text-6xl font-thin text-white mb-1 temperature-display">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl font-thin text-white mb-1 temperature-display">
                       {Math.round(weather.current.temp_c)}°
                     </div>
-                    <div className="text-sm text-white/70">
+                    <div className="text-xs sm:text-sm text-white/70">
                       Feels like {Math.round(weather.current.feelslike_c)}°
                     </div>
                   </div>
                 </div>
 
                 {/* 7-Day Forecast */}
-                <div className="mt-8">
-                  <div className="flex items-center space-x-2 mb-4">
+                <div className="mt-6 sm:mt-8">
+                  <div className="flex items-center space-x-2 mb-3 sm:mb-4">
                     <div className="w-3 h-3 bg-white/40 rounded-sm flex items-center justify-center">
                       <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
                     </div>
