@@ -176,23 +176,86 @@ export default function Index() {
         <div className="absolute top-16 left-0 w-full h-1/2 bg-gradient-to-b from-gray-700/50 via-slate-600/30 to-transparent storm-clouds-2"></div>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* Sun Rays and Light Effects */}
       <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-radial from-yellow-200/20 via-orange-200/10 to-transparent rounded-full blur-3xl sun-glow opacity-70"></div>
         <div
-          className="absolute -top-20 -left-20 w-96 h-96 bg-gradient-radial from-blue-400/30 to-transparent rounded-full blur-3xl animate-pulse opacity-70"
+          className="absolute top-10 right-10 w-32 h-32 bg-gradient-radial from-yellow-300/40 via-yellow-200/20 to-transparent rounded-full blur-2xl sun-core animate-pulse opacity-80"
           style={{ animationDuration: "4s" }}
         ></div>
+
+        {/* Sun Rays */}
         <div
-          className="absolute top-40 -right-32 w-80 h-80 bg-gradient-radial from-purple-400/25 to-transparent rounded-full blur-3xl animate-pulse opacity-60"
-          style={{ animationDuration: "6s", animationDelay: "1s" }}
+          className="absolute top-16 right-32 w-1 h-24 bg-gradient-to-b from-yellow-200/30 to-transparent rotate-12 sun-ray opacity-60"
+          style={{ animationDelay: "0s" }}
         ></div>
         <div
-          className="absolute -bottom-20 left-1/3 w-72 h-72 bg-gradient-radial from-pink-400/20 to-transparent rounded-full blur-3xl animate-pulse opacity-50"
-          style={{ animationDuration: "5s", animationDelay: "2s" }}
+          className="absolute top-24 right-16 w-1 h-20 bg-gradient-to-b from-yellow-200/25 to-transparent rotate-45 sun-ray opacity-50"
+          style={{ animationDelay: "0.5s" }}
         ></div>
         <div
-          className="absolute bottom-40 -right-20 w-64 h-64 bg-gradient-radial from-cyan-400/30 to-transparent rounded-full blur-3xl animate-pulse opacity-65"
-          style={{ animationDuration: "7s", animationDelay: "0.5s" }}
+          className="absolute top-32 right-24 w-1 h-28 bg-gradient-to-b from-yellow-200/35 to-transparent -rotate-12 sun-ray opacity-65"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-28 right-40 w-1 h-16 bg-gradient-to-b from-yellow-200/28 to-transparent rotate-90 sun-ray opacity-55"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+        <div
+          className="absolute top-40 right-28 w-1 h-22 bg-gradient-to-b from-yellow-200/32 to-transparent -rotate-45 sun-ray opacity-60"
+          style={{ animationDelay: "2s" }}
+        ></div>
+      </div>
+
+      {/* Realistic Moving Clouds */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large Dark Clouds */}
+        <div
+          className="absolute top-12 left-0 w-80 h-32 bg-gray-600/60 rounded-full blur-xl cloud-drift opacity-80"
+          style={{ clipPath: "ellipse(40% 60% at 30% 40%)" }}
+        ></div>
+        <div
+          className="absolute top-20 left-20 w-64 h-24 bg-gray-700/50 rounded-full blur-lg cloud-drift opacity-70"
+          style={{
+            animationDelay: "2s",
+            clipPath: "ellipse(45% 55% at 60% 45%)",
+          }}
+        ></div>
+        <div
+          className="absolute top-8 left-40 w-96 h-36 bg-slate-600/55 rounded-full blur-xl cloud-drift opacity-75"
+          style={{
+            animationDelay: "4s",
+            clipPath: "ellipse(50% 65% at 40% 50%)",
+          }}
+        ></div>
+
+        {/* Medium Clouds */}
+        <div
+          className="absolute top-32 right-40 w-72 h-28 bg-gray-600/45 rounded-full blur-lg cloud-drift-reverse opacity-65"
+          style={{
+            animationDelay: "1s",
+            clipPath: "ellipse(35% 50% at 70% 40%)",
+          }}
+        ></div>
+        <div
+          className="absolute top-16 right-80 w-56 h-20 bg-slate-700/40 rounded-full blur-md cloud-drift-reverse opacity-60"
+          style={{
+            animationDelay: "3s",
+            clipPath: "ellipse(40% 45% at 50% 60%)",
+          }}
+        ></div>
+
+        {/* Small Fast Clouds */}
+        <div
+          className="absolute top-40 left-60 w-40 h-16 bg-gray-500/35 rounded-full blur-md cloud-fast opacity-50"
+          style={{ clipPath: "ellipse(60% 70% at 40% 30%)" }}
+        ></div>
+        <div
+          className="absolute top-48 right-60 w-48 h-18 bg-slate-600/30 rounded-full blur-sm cloud-fast-reverse opacity-45"
+          style={{
+            animationDelay: "1.5s",
+            clipPath: "ellipse(55% 65% at 60% 40%)",
+          }}
         ></div>
       </div>
 
