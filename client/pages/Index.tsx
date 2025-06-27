@@ -296,57 +296,88 @@ export default function Index() {
         ></div>
       </div>
 
-      {/* Enhanced Weather Effects */}
+      {/* Intensive Rain Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Lightning Effect */}
+        {/* Lightning Flashes */}
         <div
-          className="absolute top-16 left-1/3 w-0.5 h-20 bg-gradient-to-b from-yellow-200/60 via-white/80 to-transparent animate-pulse opacity-0 lightning"
-          style={{ animationDuration: "5s", animationDelay: "0s" }}
+          className="absolute top-20 left-1/4 w-1 h-32 bg-gradient-to-b from-white/80 via-blue-200/60 to-transparent lightning-flash opacity-0"
+          style={{ animationDuration: "8s", animationDelay: "0s" }}
         ></div>
         <div
-          className="absolute top-24 right-1/4 w-0.5 h-16 bg-gradient-to-b from-blue-200/70 via-white/90 to-transparent animate-pulse opacity-0 lightning"
-          style={{ animationDuration: "7s", animationDelay: "3s" }}
-        ></div>
-
-        {/* Enhanced Rain */}
-        <div
-          className="absolute top-0 left-1/6 w-0.5 h-12 bg-gradient-to-b from-cyan-200/40 via-blue-200/60 to-transparent animate-bounce opacity-70"
-          style={{ animationDuration: "2s", animationDelay: "0s" }}
-        ></div>
-        <div
-          className="absolute top-0 left-2/6 w-0.5 h-10 bg-gradient-to-b from-cyan-300/35 via-blue-300/55 to-transparent animate-bounce opacity-60"
-          style={{ animationDuration: "2.3s", animationDelay: "0.5s" }}
-        ></div>
-        <div
-          className="absolute top-0 left-3/6 w-0.5 h-14 bg-gradient-to-b from-cyan-200/45 via-blue-200/65 to-transparent animate-bounce opacity-65"
-          style={{ animationDuration: "1.8s", animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-0 left-4/6 w-0.5 h-8 bg-gradient-to-b from-cyan-300/40 via-blue-300/60 to-transparent animate-bounce opacity-55"
-          style={{ animationDuration: "2.5s", animationDelay: "1.5s" }}
-        ></div>
-        <div
-          className="absolute top-0 left-5/6 w-0.5 h-11 bg-gradient-to-b from-cyan-200/50 via-blue-200/70 to-transparent animate-bounce opacity-75"
-          style={{ animationDuration: "2.2s", animationDelay: "0.8s" }}
+          className="absolute top-16 right-1/3 w-0.5 h-28 bg-gradient-to-b from-white/90 via-yellow-200/70 to-transparent lightning-flash opacity-0"
+          style={{ animationDuration: "12s", animationDelay: "5s" }}
         ></div>
 
-        {/* Magical Sparkles */}
+        {/* Heavy Rain Pattern */}
         <div
-          className="absolute top-28 left-1/4 w-1 h-1 bg-white animate-ping opacity-80"
-          style={{ animationDuration: "2s", animationDelay: "0s" }}
+          className="absolute top-0 left-[8%] w-0.5 h-16 bg-gradient-to-b from-white/50 via-gray-300/70 to-transparent rain-drop opacity-80"
+          style={{ animationDuration: "1.2s", animationDelay: "0s" }}
         ></div>
         <div
-          className="absolute top-36 right-1/3 w-1.5 h-1.5 bg-yellow-200 animate-ping opacity-70"
+          className="absolute top-0 left-[16%] w-0.5 h-14 bg-gradient-to-b from-white/45 via-gray-300/65 to-transparent rain-drop opacity-75"
+          style={{ animationDuration: "1.4s", animationDelay: "0.2s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[24%] w-0.5 h-18 bg-gradient-to-b from-white/55 via-gray-300/75 to-transparent rain-drop opacity-85"
+          style={{ animationDuration: "1.1s", animationDelay: "0.4s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[32%] w-0.5 h-12 bg-gradient-to-b from-white/40 via-gray-300/60 to-transparent rain-drop opacity-70"
+          style={{ animationDuration: "1.6s", animationDelay: "0.6s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[40%] w-0.5 h-15 bg-gradient-to-b from-white/50 via-gray-300/70 to-transparent rain-drop opacity-80"
+          style={{ animationDuration: "1.3s", animationDelay: "0.8s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[48%] w-0.5 h-13 bg-gradient-to-b from-white/45 via-gray-300/65 to-transparent rain-drop opacity-75"
+          style={{ animationDuration: "1.5s", animationDelay: "1.0s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[56%] w-0.5 h-17 bg-gradient-to-b from-white/55 via-gray-300/75 to-transparent rain-drop opacity-85"
+          style={{ animationDuration: "1.2s", animationDelay: "1.2s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[64%] w-0.5 h-14 bg-gradient-to-b from-white/40 via-gray-300/60 to-transparent rain-drop opacity-70"
+          style={{ animationDuration: "1.4s", animationDelay: "1.4s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[72%] w-0.5 h-16 bg-gradient-to-b from-white/50 via-gray-300/70 to-transparent rain-drop opacity-80"
+          style={{ animationDuration: "1.1s", animationDelay: "1.6s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[80%] w-0.5 h-12 bg-gradient-to-b from-white/45 via-gray-300/65 to-transparent rain-drop opacity-75"
+          style={{ animationDuration: "1.6s", animationDelay: "1.8s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-[88%] w-0.5 h-15 bg-gradient-to-b from-white/55 via-gray-300/75 to-transparent rain-drop opacity-85"
+          style={{ animationDuration: "1.3s", animationDelay: "2.0s" }}
+        ></div>
+
+        {/* Water Droplets on Ground */}
+        <div
+          className="absolute bottom-0 left-[10%] w-2 h-1 bg-white/30 rounded-full blur-sm water-splash opacity-60"
+          style={{ animationDuration: "2s", animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-[30%] w-1.5 h-0.5 bg-white/25 rounded-full blur-sm water-splash opacity-50"
           style={{ animationDuration: "2.5s", animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-48 left-1/2 w-1 h-1 bg-cyan-200 animate-ping opacity-60"
-          style={{ animationDuration: "3s", animationDelay: "2s" }}
+          className="absolute bottom-0 left-[50%] w-2.5 h-1 bg-white/35 rounded-full blur-sm water-splash opacity-70"
+          style={{ animationDuration: "1.8s", animationDelay: "1.5s" }}
         ></div>
         <div
-          className="absolute bottom-60 right-2/5 w-1.5 h-1.5 bg-purple-200 animate-ping opacity-75"
-          style={{ animationDuration: "2.8s", animationDelay: "1.3s" }}
+          className="absolute bottom-0 left-[70%] w-1 h-0.5 bg-white/20 rounded-full blur-sm water-splash opacity-45"
+          style={{ animationDuration: "2.2s", animationDelay: "2s" }}
         ></div>
+        <div
+          className="absolute bottom-0 left-[90%] w-2 h-1 bg-white/30 rounded-full blur-sm water-splash opacity-60"
+          style={{ animationDuration: "2.4s", animationDelay: "0.8s" }}
+        ></div>
+
+        {/* Atmospheric Mist */}
+        <div className="absolute bottom-20 left-0 w-full h-32 bg-gradient-to-t from-gray-500/20 via-gray-400/10 to-transparent mist-effect opacity-60"></div>
       </div>
 
       {/* Constellation Pattern */}
