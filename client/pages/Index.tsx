@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { WeatherResponse, ForecastResponse } from "@shared/weather";
 import SearchBar from "../components/SearchBar";
-import WeatherCard from "../components/WeatherCard";
-import ForecastCard from "../components/ForecastCard";
+import WeatherDisplay from "../components/WeatherDisplay";
 import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function Index() {
