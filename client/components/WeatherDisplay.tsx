@@ -191,7 +191,7 @@ export default function WeatherDisplay({
                     </h3>
                   </div>
 
-                  <div className="space-y-2.5">
+                  <div className="space-y-2 sm:space-y-2.5">
                     {[
                       { day: "Today", min: 15, max: 25, rain: 15 },
                       { day: "SUN", min: 12, max: 20, rain: 12 },
@@ -205,36 +205,36 @@ export default function WeatherDisplay({
                     ].map((item, index) => (
                       <div
                         key={item.day}
-                        className="flex items-center justify-between py-1 forecast-item"
+                        className="flex items-center justify-between py-1.5 sm:py-1 forecast-item"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        <div className="flex items-center space-x-3 flex-1">
-                          <div className="text-xs font-medium text-white w-12">
+                        <div className="flex items-center space-x-2 sm:space-x-3 flex-1">
+                          <div className="text-xs font-medium text-white w-10 sm:w-12">
                             {item.day}
                           </div>
-                          <div className="flex items-center space-x-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
                             {getWeatherIcon(
                               weather.current.condition.text,
                               "sm",
                             )}
-                            <span className="text-xs text-white/60 w-6">
+                            <span className="text-xs text-white/60 w-6 hidden sm:inline">
                               {item.rain}%
                             </span>
                           </div>
                         </div>
 
                         {/* Temperature Range Bar */}
-                        <div className="flex items-center space-x-2 flex-1 justify-end">
-                          <span className="text-xs text-white/60 w-6 text-right">
+                        <div className="flex items-center space-x-1.5 sm:space-x-2 flex-1 justify-end">
+                          <span className="text-xs text-white/60 w-5 sm:w-6 text-right">
                             {item.min}°
                           </span>
-                          <div className="w-16 h-1 bg-white/20 rounded-full overflow-hidden">
+                          <div className="w-12 sm:w-16 h-1 bg-white/20 rounded-full overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 rounded-full"
                               style={{ width: "70%" }}
                             ></div>
                           </div>
-                          <span className="text-xs text-white w-6">
+                          <span className="text-xs text-white w-5 sm:w-6">
                             {item.max}°
                           </span>
                         </div>
