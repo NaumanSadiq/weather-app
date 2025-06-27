@@ -104,14 +104,105 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-600 to-blue-700 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-blue-600/20"></div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-700 via-purple-700 to-blue-800 relative overflow-hidden">
+      {/* Dynamic Sky Background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-blue-300/20"></div>
+
+      {/* Animated Clouds */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-20 bg-white/10 rounded-full blur-xl animate-pulse opacity-60"></div>
+        <div
+          className="absolute top-32 right-20 w-40 h-24 bg-white/8 rounded-full blur-xl animate-pulse opacity-50"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-16 left-1/3 w-28 h-16 bg-white/12 rounded-full blur-xl animate-pulse opacity-40"
+          style={{ animationDelay: "4s" }}
+        ></div>
+        <div
+          className="absolute top-40 right-1/3 w-36 h-22 bg-white/6 rounded-full blur-xl animate-pulse opacity-70"
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
+
+      {/* Floating Weather Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Raindrops */}
+        <div
+          className="absolute top-0 left-1/4 w-0.5 h-8 bg-gradient-to-b from-white/30 to-transparent animate-bounce opacity-60"
+          style={{ animationDuration: "2s", animationDelay: "0s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-1/2 w-0.5 h-6 bg-gradient-to-b from-white/25 to-transparent animate-bounce opacity-50"
+          style={{ animationDuration: "2.5s", animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-3/4 w-0.5 h-7 bg-gradient-to-b from-white/20 to-transparent animate-bounce opacity-40"
+          style={{ animationDuration: "2.2s", animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-0 left-1/6 w-0.5 h-5 bg-gradient-to-b from-white/35 to-transparent animate-bounce opacity-55"
+          style={{ animationDuration: "2.8s", animationDelay: "1.5s" }}
+        ></div>
+
+        {/* Snowflakes */}
+        <div
+          className="absolute top-10 right-1/4 w-2 h-2 bg-white/40 rounded-full animate-ping opacity-70"
+          style={{ animationDuration: "3s", animationDelay: "0s" }}
+        ></div>
+        <div
+          className="absolute top-20 right-1/2 w-1.5 h-1.5 bg-white/30 rounded-full animate-ping opacity-50"
+          style={{ animationDuration: "3.5s", animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-32 right-3/4 w-1 h-1 bg-white/35 rounded-full animate-ping opacity-60"
+          style={{ animationDuration: "4s", animationDelay: "2s" }}
+        ></div>
+      </div>
+
+      {/* Atmospheric Layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-transparent via-transparent to-blue-900/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-purple-400/5 to-transparent"></div>
+
+      {/* Subtle Weather Pattern */}
       <div
-        className={
-          'absolute top-0 left-0 w-full h-full bg-[url(\'data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\')] opacity-30'
-        }
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: "40px 40px",
+        }}
       ></div>
+
+      {/* Aurora Effect */}
+      <div
+        className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-green-400/10 via-blue-400/5 to-transparent opacity-60 animate-pulse"
+        style={{ animationDuration: "8s" }}
+      ></div>
+
+      {/* Stars */}
+      <div className="absolute inset-0">
+        <div className="absolute top-16 left-16 w-1 h-1 bg-white rounded-full animate-pulse opacity-80"></div>
+        <div
+          className="absolute top-24 right-32 w-0.5 h-0.5 bg-white rounded-full animate-pulse opacity-60"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-40 left-40 w-0.5 h-0.5 bg-white rounded-full animate-pulse opacity-70"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-32 right-16 w-1 h-1 bg-white rounded-full animate-pulse opacity-50"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-20 left-2/3 w-0.5 h-0.5 bg-white rounded-full animate-pulse opacity-90"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute top-44 right-2/3 w-1 h-1 bg-white rounded-full animate-pulse opacity-60"
+          style={{ animationDelay: "2.5s" }}
+        ></div>
+      </div>
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
