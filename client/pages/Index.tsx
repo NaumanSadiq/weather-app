@@ -204,7 +204,7 @@ export default function Index() {
                 Weather App
               </h1>
               <p className="text-white/80 text-lg">
-                Get current weather and 7-day forecast
+                Get current weather and monthly forecast
               </p>
             </div>
 
