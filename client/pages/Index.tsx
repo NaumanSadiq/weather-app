@@ -204,7 +204,9 @@ export default function Index() {
                 Weather App
               </h1>
               <p className="text-white/80 text-lg">
-                Get current weather and monthly forecast
+                <span className="cloud-thunder">⛈️</span>
+                &nbsp;Stay One Step Ahead of the Clouds{' '}
+                <span className="cloud-thunder">⛈️</span>
               </p>
             </div>
 

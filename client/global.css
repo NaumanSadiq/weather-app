@@ -506,3 +506,18 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+.cloud-thunder {
+  display: inline-block;
+  font-size: 1.8em;
+  /* slower, subtler shake */
+  animation: vibrate-slow 1.2s ease-in-out infinite;
+}
+
+@keyframes vibrate-slow {
+  0%, 100%   { transform: translate(0, 0); }
+  20%        { transform: translate(-1px, 1px); }
+  40%        { transform: translate(-1px, -1px); }
+  60%        { transform: translate(1px, 1px); }
+  80%        { transform: translate(1px, -1px); }
+}
